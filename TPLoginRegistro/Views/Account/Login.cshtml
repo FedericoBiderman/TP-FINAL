@@ -1,29 +1,27 @@
 @{
-    ViewData["Title"] = "Login";
+  ViewData["Title"] = "Login";
 }
 
-
 <div class="background">
-    <div class="fondo"></div>
-    <div class="fondo"></div>
+
+<div class="container">
+  <h1>Iniciar Sesión</h1>
+  <form id="login-form" method="post" action='@Url.Action("CheckLogin", "Account")'>
+
+    <label for="NombreUsuario">Nombre de Usuario:</label>
+    <input type="text" name="Username" id="Username" placeholder="Usuario" required>
+
+    <label for="Contraseña">Contraseña:</label>
+    <input type="password" name="Contraseña" id="Contraseña" placeholder="Contraseña" required>
+
+    <label for="Confirmar Contraseña">Confirmar Contraseña:</label>
+    <input type="password" name="ConfirmarContraseña" id="ConfirmarContraseña" placeholder="Confirmar Contraseña"
+      required>
+
+    <button type="submit">Inicio de sesion</button>
+  </form>
+  <p><a href='@Url.Action("Registro", "Account")'>Eres Nuevo? Regístrate</a></p>
+  <p><a href='@Url.Action("OlvideContraseña", "Account")'>Olvidé Mi Contraseña</a></p>
 </div>
-<form action="Formulario de logeo" method="post">
-    <h2>Iniciar Sesion</h3>
+</div>
 
-    <label for="NombreUsuario">Nombre de Usuario</label>
-    <input type="text" name="Username" id="Username" placeholder="Usuario">
-
-    <label for="Contraseña">Contraseña</label>
-    <input type="password" name="Contraseña" id="Contraseña" placeholder="Contraseña">
-
-<label for="Confirmar Contraseña">Confirmar Contraseña</label>
-    <input type="password" name="ConfirmarContraseña" id="ConfirmarContraseña" placeholder="Confirmar Contraseña">
-
-    <button type="submit">Enviar</button>
-    <div class="olvidecontraseña">
-      <div class="contraseña"><a href='@Url.Action("OlvideContraseña","Account")'><button>Olvide mi contraseña</button></a></div>
-    </div>
-    <div class="Registro">
-      <div class="nuevo"><a href='@Url.Action("Registro","Account")'><button>¿Eres nuevo? Registrate</button></a></div>
-    </div>
-</form>

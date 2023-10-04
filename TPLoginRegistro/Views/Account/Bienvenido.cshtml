@@ -1,0 +1,12 @@
+@{
+  ViewData["Title"] = "Bienvenido";
+}
+<div class="background">
+    <h1>Bienvenido, @ViewBag.Usuario.Nombre @ViewBag.Usuario.Apellido</h1>
+    <p>Nombre de Usuario: @ViewBag.Usuario.Username</p>
+    <p>Edad: @ViewBag.Usuario.Edad</p>
+    <p>Gmail: @ViewBag.Usuario.Email</p>
+    <p>Teléfono: @ViewBag.Usuario.Telefono</p>
+
+    <p><a href='@Url.Action("Index", "Home")'>Cerrar sesión</a></p>
+</div>

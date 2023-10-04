@@ -19,4 +19,77 @@ html {
 
 body {
   margin-bottom: 60px;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
 }
+
+
+.container {
+  margin: 0 auto;
+  max-width: 500px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="password"],
+form input[type="email"],
+form input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border:#000000;
+  margin-bottom: 20px;
+}
+
+form button[type="submit"] {
+  background-color: #3e8e41;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 50px;
+}
+
+form button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+p a {
+  color: #003cff;
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+.background {
+  background-color: #f6fff8;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+

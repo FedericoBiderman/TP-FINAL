@@ -21,12 +21,21 @@ public class AccountController : Controller
     }
   
   
-    public IActionResult CheckLogin(string username, string password)
+   [HttpPost] 
+public IActionResult CheckLogin(string username, string contraseña)
+{
+    Usuario UsuarioEncontrado = BD.ObtenerUsuario(username);
+    if (UsuarioEncontrado != null && UsuarioEncontrado.Contraseña == contraseña)
     {
-        //aca se fija si es un usuario valido
+        ViewBag.Usuario=UsuarioEncontrado;
+        return View("Bienvenido");
+    }
+    else 
+    {
+        ViewBag.MensajeError = "Nombre de usuario o contraseña incorrectos";
         return View();
     }
-
+}
 
     public IActionResult Registro()
     {
@@ -34,14 +43,61 @@ public class AccountController : Controller
         return View();
     }
 
-     public IActionResult ValidarRegistroUsuario()
+    /*recibe desdel formulario y guarda el usuario si no existia o muestra error si ya existia*/
+   [HttpPost] public IActionResult ValidarRegistroUsuario(string username, string contraseña, string nombre, string apellido, int edad, int telefono, string email)
     {
-        //en el view vas a pedir user password
+        Usuario UsuarioYaExistentes = BD.ObtenerUsuario(username);
+
+       if (UsuarioYaExistentes != null)
+        {
+            ViewBag.MensajeError = "Este nombre de usuario ya está en uso";
+            return View();
+        }
+
+        Usuario nuevoUsuario = new Usuario(0, username, contraseña, "", "", 0, 0, "");
+
+        BD.RegistrarUsuario(nuevoUsuario);
+
+        return RedirectToAction("Login");
+}
+
+
+    public IActionResult OlvideContraseña()
+    {
         return View();
     }
+
+    [HttpPost]
+    public IActionResult CheckOlvideContraseña(string username, string ContraseñaNueva)
+    {
+        Usuario UsuariosSinContraseña = BD.ObtenerUsuario(username);
+
+        if (UsuariosSinContraseña != null)
+        {
+            UsuariosSinContraseña.Contraseña = ContraseñaNueva;
+            BD.ActualizarUsuario(UsuariosSinContraseña);
+
+            ViewBag.MensajeExito = "La contraseña se restablecio de forma exitosa";
+        }
+        else
+        {
+            ViewBag.MensajeError = "No se ha encontrado a un usuario con ese nombre";
+        }
+
+        return View();
+    }
+
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
+
+
+
+
+
+
+
